@@ -2,7 +2,17 @@
 # also, creates the instance of the Flask module
 from flask import Flask
 
+# config:
+
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('config.py')
-# import after instance,
-from . import views
+
+# blueprints:
+
+from project.users.views import user_blueprint
+from project.core.views import core_blueprint
+
+# register the blueprints
+
+app.register_blueprint(user_blueprint)
+app.register_blueprint(core_blueprint)
