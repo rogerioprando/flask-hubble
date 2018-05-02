@@ -38,29 +38,6 @@ estruturar o código, duas recomendadas são funcional e divisional e podem ser 
 Aqui vamos implementar dois blueprints.
 users: responsavel por login/logout, administração do usuário
 core: parte separada do projeto a ser desenvolvida posteriormente
-.
-├── instance
-│   └── flask.cfg
-├── project
-│   ├── __init__.py
-│   ├── core
-│   │   ├── __init__.py
-│   │   ├── templates
-│   │   │   └── index.html
-│   │   └── views.py
-│   ├── static
-│   │   └── css
-│   │       └── main.css
-│   ├── tests
-│   │   ├── test_recipes.py
-│   │   └── test_users.py
-│   └── users
-│       ├── __init__.py
-│       ├── templates
-│       │   └── login.html
-│       └── views.py
-├── requirements.txt
-└── run.py
 
 Os arquivos views.py dentro de cada diretório blueprint precisa configurar o blueprint.
 ex: core_blueprint = Blueprint('core', \__name\__, template_folder='templates')
@@ -69,5 +46,20 @@ Também será usado na configuração geral de Blueprints na aplicação Flask.
 O mesmo deve ser feito para cada Blueprint que desejar criar (users, core até o momento).
 Após adicionados os Blueprints é necessário que a aplicação Flask saiba desses Blueprints. Isso será feito
 no arquivo \__init\__.py no diretorio do projeto.
+
+### Database using PostgreSQL and SQLAlchemy (add_database)
+Arquivo config.py recebe as configurações do banco.
+SQLALCHEMY_DATABASE_URI: endereço URI (Identificador de Recursos Universal)
+SQL irá acompanhar as modificações.
+SQLALCHEMY_TRACK_MODIFICATIONS = True
+O módulo SQLAlchemy é importado no \__init\__.py. Ao instanciá-lo é passado o objeto flask (app).
+db = SQLAlchemy(app)
+
+Criar um arquivo modelo (como é chamado no flask a estrutura da nossa tabela do banco de dados).
+project/models.py
+No models ficam as estruturas da tabelas do banco de dados.
+
+Para testar a inserção, usar db_create.py (arquivo temporário, será removido)
+
 
 

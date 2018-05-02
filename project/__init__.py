@@ -1,11 +1,14 @@
 # indicate to the Python interpreter that this directory is a Python package
 # also, creates the instance of the Flask module
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 # config:
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('config.py')
+
+db = SQLAlchemy(app)
 
 # blueprints:
 

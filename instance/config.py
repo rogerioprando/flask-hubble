@@ -9,3 +9,7 @@ TOP_LEVEL_DIR = os.path.abspath(os.curdir)
 
 SECRET_KEY = '<INSERT FROM RANDOM STRING GENERATED>'
 DEBUG = True
+
+# SQLAlchemy
+SQLALCHEMY_DATABASE_URI = 'postgresql://rogerio:password@localhost/flask_hubble'
+SQLALCHEMY_TRACK_MODIFICATIONS = True
