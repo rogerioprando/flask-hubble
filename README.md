@@ -61,5 +61,22 @@ No models ficam as estruturas da tabelas do banco de dados.
 
 Para testar a inserção, usar db_create.py (arquivo temporário, será removido)
 
+### Templates and Bootstrap (add_templates)
+
+##### Jinja2
+Framework flask usa Jinja2 para processar templates em HTML. Permite usar python-code para expressões lógicas tipo
+(if/else statements, loops, etc.).
+Uma breve descrição de como usar Jinja2:
+{% … %} for Statements like for-loops, if/else if/else statements, and calling python functions
+{{ … }} for Expressions to print to the template output such as the data from your model
+{# … #} for Comments not included in the template output
+
+##### Bootstrap
+Há dois modos de usar bootstrap no projeto flask.
+1. Baixar os arquivlos e adicionar na pasta project/static
+2. Usar CDN (Content Delivery Network)
+
+
+
 
 

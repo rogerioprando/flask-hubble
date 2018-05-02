@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="page-header">
+        <h2>Eventos</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-16">
+            <table class="table table-striped" id="owned_stock_table">
+                <thead>
+                    <tr>
+                        <th>Prefixo</th>
+                        <th>XVM</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for event in events %}
+                    <tr>
+                        <td>{{ event.prefix }}</td>
+                        <td>{{ event.xvm }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div><!-- /.container -->
+
+{% endblock %}
