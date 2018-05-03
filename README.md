@@ -20,10 +20,10 @@ run.py: arquivo no tipo do diretório que chama o método run() da instancia do 
 Rotina de testes utilizando nose2.
 
 ### Configuring a Flask Application (instance_folder)
-Usado uma pasta de instãncia para manipular as configurações da aplicação Flask.
+Usar uma pasta de instãncia para manipular as configurações da aplicação Flask.
 Nessa pasta ficam configuraços do tipo DEBUG, TESTING, SECRET_KEY, SQLALCHEMY_DATABASE_URI, etc.
-SECRET_KEY é um paràmetro crítico da aplicaço flask,  usado para encriptar a informação que será 
-armazenada para cada cada usurio. Nunca deve ser armazenada em respositórios públicos.
+SECRET_KEY é um parâmetro crítico da aplicaço flask,  usado para encriptar a informação que será 
+armazenada para cada cada usuário. Nunca deve ser armazenada em respositórios públicos.
 Nesse caso toda vez que um deploy para produção for necessário deve ser criado manualmente.
 
 Criar uma pasta instance e adicionar um arquivo  config.py com as configurações do tpo (DEBUG, SECRET_KEY, etc)
@@ -35,7 +35,7 @@ app.config.from_pyfile('config.py')
 ### Using Blueprints to Organize your Application (add_blueprints)
 Blueprints é um ótimo método para organizar a aplicação Flask. Existem diversas formas de usar Blueprints para
 estruturar o código, duas recomendadas são funcional e divisional e podem ser vistas [aqui](http://exploreflask.readthedocs.io/en/latest/blueprints.html#where-do-you-put-them).
-Aqui vamos implementar dois blueprints.
+Nesse projeto serão dois blueprints.
 users: responsavel por login/logout, administração do usuário
 core: parte separada do projeto a ser desenvolvida posteriormente
 
@@ -94,4 +94,17 @@ Três passos para registrar um novo usuario:
 1. criar uma nova classe definindo o form (models.py)
 2. cria uma nova rota para mostrar o form e processar o dado do form (users/views.py)
 3. criar um template para mostrar o form
+
+
+### User Login and Logout (add_login_logout)
+Criar um objeto do tipo LoginManager do módulo Flask-Login e passar a aplicação.
+Criar a função que realiza o login, que é a função login () dentro do Blueprint "users" (daí, users.login).
+Definição do decorador @login_manager.user_loader que sera usado para o flask recarregar o objeto user do user ID que
+foi gravado em cada sessão. Uma sessão é usada para armazenar informações do usário.
+último passo é configurar o uso do flask-login atualizando User (models.py) para incluir propriedades e funções:
+is_authenticated
+is_active
+is_anonymous
+get_id()
+O decorator @property faz com que um método da classe possa ser acessado como se fosse um atributo. Isso é encapsulamento de verdade!
 

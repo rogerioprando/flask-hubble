@@ -37,7 +37,13 @@
                     <li><a href="#">Ajuda</a></li>
                 </ul>
                     <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ url_for('users.register_new_user') }}">Login</a></li>
+                    {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('users.logout') }}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('users.register_new_user') }}">Register</a></li>
+                    <li><a href="{{ url_for('users.login') }}">Login</a></li>
+                    {% endif %}
+
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!-- /.container -->
