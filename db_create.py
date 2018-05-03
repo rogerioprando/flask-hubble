@@ -2,7 +2,7 @@
 
 from project import db
 from project.models import Event
-
+db.drop_all()
 # create the database and the database table
 db.create_all()
 

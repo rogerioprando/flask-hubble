@@ -4,7 +4,7 @@ from .forms import *
 from project import db
 
 
-core_blueprint = Blueprint('core', __name__, template_folder='templates')
+core_blueprint = Blueprint('core', __name__,)
 
 
 @core_blueprint.route('/')

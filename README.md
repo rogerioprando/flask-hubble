@@ -89,4 +89,9 @@ Mensagens de erro (usando flask flash), mensagens adicionadas no layout.
 Macro (_form_macro.html)valida todo field.
 
 
+### User Registration (add_user_registration)
+Três passos para registrar um novo usuario:
+1. criar uma nova classe definindo o form (models.py)
+2. cria uma nova rota para mostrar o form e processar o dado do form (users/views.py)
+3. criar um template para mostrar o form
 
