@@ -77,6 +77,16 @@ Há dois modos de usar bootstrap no projeto flask.
 2. Usar CDN (Content Delivery Network)
 
 
+### Forms (add_forms)
+WTF_CSRF_ENABLED: Cross Site Request Forgery
+CSRF is an attack that tricks the victim into submitting a malicious request.
+Classe form.py é uma classe filha de Form, e define os elementos do form e quais são os validadores.
+Criar um form (com uma nova rota, ou não - incluir métodos GET e POST na rota). 
+Esse form é uma instância da classe Form que foi criada (form.py)
+HTML Form: < form action="{{ url_for('recipes.add_recipe') }}" ...
+{{ form.csrf_token }}’ line is used as part of the CSRF protection
+Mensagens de erro (usando flask flash), mensagens adicionadas no layout.
+Macro (_form_macro.html)valida todo field.
 
 
 

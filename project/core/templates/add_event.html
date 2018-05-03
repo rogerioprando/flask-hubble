@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% from "_form_macros.html" import render_field %}
+
+{% block content %}
+
+<div class="add-event">
+
+    <div class="page-header">
+
+        <h2>Adicionando novo evento</h2>
+
+    </div>
+
+    <div class="col md-10">
+    <form action="{{ url_for('core.add_event') }}" method="post">
+        {{ form.csrf_token }}
+        <div class="form-group row">
+            <dl>
+                {{ render_field(form.event_prefix, placeholder="Prefixo") }}
+                {{ render_field(form.event_xvm, placeholder="Evento") }}
+            </dl>
+        </div>
+
+        <button class="btn btn-sm btn-success" type="submit">Adicionar</button>
+    </form>
+    </div>
+
+</div>
+
+
+{% endblock %}
