@@ -16,3 +16,6 @@ SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 # WTF-Forms
 WTF_CSRF_ENABLED = True
+
+# Bcrypt algorithm hashing rounds
+BCRYPT_LOG_ROUNDS = 15

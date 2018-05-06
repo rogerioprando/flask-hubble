@@ -20,10 +20,10 @@ def login():
                 db.session.add(user)
                 db.session.commit()
                 login_user(user)
-                flash('Bem vindo {}' .format(current_user.email), 'success') # tentar mostrar o nome aqui
+                flash('Login efetuado. Bem vindo {}' .format(current_user.email), 'success') # tentar mostrar o nome aqui
                 return redirect(url_for('core.index'))
             else:
-                flash('Erro! Credenciais incorretas.', 'error')
+                flash('Email ou Senha incorretos', 'error')
     return render_template('login.html', form=form)
 
 
@@ -35,8 +35,8 @@ def logout():
     user.authenticated = False
     db.session.add(user)
     db.session.commit()
+    flash('Logout efetuado. Até logo {} {}. ' .format(user.first_name, user.last_name), 'info')
     logout_user()
-    flash('Logout efetuado.', 'info')
     return redirect(url_for('users.login'))
 
 
@@ -46,7 +46,7 @@ def register_new_user():
     if request.method == 'POST':
         if form.validate_on_submit():
             try:
-                new_user = User(form.username.data, form.email.data, form.password.data)
+                new_user = User(form.first_name.data, form.last_name.data, form.email.data, form.password.data)
                 new_user.authenticated = True
                 db.session.add(new_user)
                 db.session.commit()

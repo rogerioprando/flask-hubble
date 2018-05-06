@@ -1,5 +1,5 @@
-from project import db
-from sqlalchemy.ext.hybrid import hybrid_method
+from project import db, bcrypt
+from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 
 
 
@@ -24,20 +24,31 @@ class User(db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String, unique=True, nullable=False)
+    first_name = db.Column(db.String, unique=False, nullable=False)
+    last_name = db.Column(db.String, unique=False, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
+    _password = db.Column(db.Binary(60), nullable=False)
     password = db.Column(db.String, nullable=False)                 # TEMPORARY - TO BE DELETED IN FAVOR OF HASHED PASSWORD
     authenticated = db.Column(db.Boolean, default=False)
 
-    def __init__(self, username, email, password):
-        self.username = username
+    def __init__(self, first_name, last_name, email, password_text):
+        self.first_name = first_name
+        self.last_name = last_name
         self.email = email
-        self.password = password
+        self.password = password_text
         self.authenticated = False
 
+    @hybrid_property
+    def password(self):
+        return self._password
+
+    @password.setter
+    def password(self, password_text):
+        self._password = bcrypt.generate_password_hash(password_text)
+
     @hybrid_method
-    def is_correct_password(self, password):
-        return self.password == password
+    def is_correct_password(self, password_text):
+        return bcrypt.check_password_hash(self._password, password_text)
 
     @property
     def is_authenticated(self):

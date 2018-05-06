@@ -1,7 +1,7 @@
 # temporary file
 
 from project import db
-from project.models import Event
+from project.models import Event, User
 db.drop_all()
 # create the database and the database table
 db.create_all()
@@ -15,4 +15,15 @@ db.session.add(event2)
 db.session.add(event3)
 
 # commit the changes
+db.session.commit()
+
+# insert user data
+user1 = User('Rogerio','Prando','rogerio.prando@wplex.com.br', 'rogerio123')
+user2 = User('Rogerio','Prando','rogprando@gmail.com', '123456')
+user3 = User('Albert','Einstein','albert@genius.com.br', 'youneverknowit')
+db.session.add(user1)
+db.session.add(user2)
+db.session.add(user3)
+
+# commit the changes for the recipes
 db.session.commit()
