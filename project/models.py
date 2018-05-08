@@ -27,8 +27,7 @@ class User(db.Model):
     first_name = db.Column(db.String, unique=False, nullable=False)
     last_name = db.Column(db.String, unique=False, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
-    _password = db.Column(db.Binary(60), nullable=False)
-    password = db.Column(db.String, nullable=False)                 # TEMPORARY - TO BE DELETED IN FAVOR OF HASHED PASSWORD
+    _password = db.Column(db.Binary(60), nullable=False) # _password com underline, atributo privado
     authenticated = db.Column(db.Boolean, default=False)
 
     def __init__(self, first_name, last_name, email, password_text):
@@ -42,6 +41,7 @@ class User(db.Model):
     def password(self):
         return self._password
 
+    # o @password.setter permite definir a password que tá armazenada no atributo _password
     @password.setter
     def password(self, password_text):
         self._password = bcrypt.generate_password_hash(password_text)
@@ -50,6 +50,7 @@ class User(db.Model):
     def is_correct_password(self, password_text):
         return bcrypt.check_password_hash(self._password, password_text)
 
+    # @property permite que o método possa ser acessado como se fosse um atributo
     @property
     def is_authenticated(self):
         """Return True if the user is authenticated."""
